@@ -1,0 +1,11 @@
+<li class="todo-item" [class.completed]="todo.completed">
+  <label>
+    <input
+      type="checkbox"
+      [checked]="todo.completed"
+      (change)="onToggle()"
+    />
+    <span>{{ todo.title }}</span>
+  </label>
+  <button type="button" class="remove-btn" (click)="onRemove()">✕</button>
+</li>

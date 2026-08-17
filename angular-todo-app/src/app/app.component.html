@@ -1,0 +1,29 @@
+<div class="wrapper">
+  <div class="card">
+    <h1>My Todo List</h1>
+    <p class="subtitle">{{ remainingCount }} task(s) remaining</p>
+
+    <form class="add-form" (ngSubmit)="addTodo()">
+      <input
+        type="text"
+        placeholder="Add a new task..."
+        [(ngModel)]="newTodoTitle"
+        name="newTodoTitle"
+      />
+      <button type="submit">Add</button>
+    </form>
+
+    <ul class="todo-list" *ngIf="todoService.todos().length > 0; else empty">
+      <app-todo-item
+        *ngFor="let todo of todoService.todos()"
+        [todo]="todo"
+        (toggle)="onToggle($event)"
+        (remove)="onRemove($event)"
+      ></app-todo-item>
+    </ul>
+
+    <ng-template #empty>
+      <p class="empty-msg">No tasks yet — add one above 🎉</p>
+    </ng-template>
+  </div>
+</div>
